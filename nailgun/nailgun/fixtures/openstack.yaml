@@ -5,9 +5,9 @@
     state: "available"
     modes_metadata:
       ha_compact:
-        description: "This configuration Deploys OpenStack ready for high availability (HA). Controller services are prepared for HA by setting up a base MySQL/Galera, RabbitMQ and HAProxy so that additional controllers can be deployed NOW, or scaled out LATER. 3 or more controllers are required for a true HA environment."
+        description: "This configuration Deploys OakCloud ready for high availability (HA). Controller services are prepared for HA by setting up a base MySQL/Galera, RabbitMQ and HAProxy so that additional controllers can be deployed NOW, or scaled out LATER. 3 or more controllers are required for a true HA environment."
       multinode:
-        description: "In this configuration the OpenStack controller is deployed separately from the compute and cinder nodes. This mode assumes the presence of 1 controller node and 1 or more compute/cinder nodes. You can add more nodes to scale your cloud later."
+        description: "In this configuration the OakCloud controller is deployed separately from the compute and cinder nodes. This mode assumes the presence of 1 controller node and 1 or more compute/cinder nodes. You can add more nodes to scale your cloud later."
     roles:
       - controller
       - compute
@@ -15,7 +15,7 @@
     roles_metadata:
       controller:
         name: "Controller"
-        description: "The controller initiates orchestration activities and provides an external API.  Other components like Glance (image storage), Keystone (identity management), Horizon (OpenStack dashboard) and Nova-Scheduler are installed on the controller as well."
+        description: "The controller initiates orchestration activities and provides an external API.  Other components like Glance (image storage), Keystone (identity management), Horizon (OakCloud dashboard) and Nova-Scheduler are installed on the controller as well."
         conflicts:
           - compute
       compute:
@@ -304,7 +304,7 @@
             weight: 30
           debug:
             value: false
-            label: "OpenStack debug logging"
+            label: "OakCloud debug logging"
             description: "Debug logging mode provides more information, but requires more disk space."
             weight: 20
             type: "checkbox"
@@ -317,7 +317,7 @@
           auto_assign_floating_ip:
             value: false
             label: "Auto assign floating IP"
-            description: "If selected, OpenStack will automatically assign a floating IP to a new instance"
+            description: "If selected, OakCloud will automatically assign a floating IP to a new instance"
             weight: 40
             type: "checkbox"
             restrictions:
@@ -327,17 +327,17 @@
             values:
               - data: "kvm"
                 label: "KVM"
-                description: "Choose this type of hypervisor if you run OpenStack on hardware"
+                description: "Choose this type of hypervisor if you run OakCloud on hardware"
                 restrictions:
                   - "settings:common.libvirt_type.value == 'vcenter'"
               - data: "qemu"
                 label: "QEMU"
-                description: "Choose this type of hypervisor if you run OpenStack on virtual hosts."
+                description: "Choose this type of hypervisor if you run OakCloud on virtual hosts."
                 restrictions:
                   - "settings:common.libvirt_type.value == 'vcenter'"
               - data: "vcenter"
                 label: "vCenter"
-                description: "Choose this type of hypervisor if you run OpenStack in a vCenter environment."
+                description: "Choose this type of hypervisor if you run OakCloud in a vCenter environment."
                 restrictions:
                   - "settings:common.libvirt_type.value != 'vcenter' or cluster:net_provider == 'neutron'"
             label: "Hypervisor type"
@@ -352,7 +352,7 @@
           use_cow_images:
             value: true
             label: "Use qcow format for images"
-            description: "For most cases you will want qcow format. If it's disabled, raw image format will be used to run VMs. OpenStack with raw format currently does not support snapshotting."
+            description: "For most cases you will want qcow format. If it's disabled, raw image format will be used to run VMs. OakCloud with raw format currently does not support snapshotting."
             weight: 50
             type: "checkbox"
           compute_scheduler_driver:
@@ -360,7 +360,7 @@
             values:
               - data: "nova.scheduler.filter_scheduler.FilterScheduler"
                 label: "Filter scheduler"
-                description: "Currently the most advanced OpenStack scheduler. See the OpenStack documentation for details."
+                description: "Currently the most advanced OakCloud scheduler. See the OakCloud documentation for details."
               - data: "nova.scheduler.simple.SimpleScheduler"
                 label: "Simple scheduler"
                 description: "This is 'naive' scheduler which tries to find the least loaded host"
@@ -527,7 +527,7 @@
         description: "Ceph storage can be configured to provide storage for block volumes (Cinder), images (Glance) and ephemeral instance storage (Nova). It can also provide object storage through the S3 and Swift API (See settings to enable each)."
       mongo:
         name: "Telemetry - MongoDB"
-        description: "A feature-complete and recommended database for storage of metering data from OpenStack Telemetry (Ceilometer)."
+        description: "A feature-complete and recommended database for storage of metering data from OakCloud Telemetry (Ceilometer)."
         conflicts:
           - compute
           - ceph-osd
@@ -1065,7 +1065,7 @@
     version: "2014.1.3-5.1.2"
     can_update_from_versions: ["2014.1.1-5.1"]
     operating_system: "CentOS"
-    description: "This option will install the OpenStack Icehouse packages using a CentOS based operating system. With high availability features built in, you are getting a robust, enterprise-grade OpenStack deployment."
+    description: "This option will install the OakCloud Icehouse packages using a CentOS based operating system. With high availability features built in, you are getting a robust, enterprise-grade OakCloud deployment."
     attributes_metadata:
       editable:
         kernel_params:
@@ -1106,7 +1106,7 @@
     version: "2014.1.3-5.1.2"
     can_update_from_versions: ["2014.1.1-5.1"]
     operating_system: "Ubuntu"
-    description: "This option will install the OpenStack Icehouse packages using Ubuntu as a base operating system. With high availability features built in, you are getting a robust, enterprise-grade OpenStack deployment."
+    description: "This option will install the OakCloud Icehouse packages using Ubuntu as a base operating system. With high availability features built in, you are getting a robust, enterprise-grade OakCloud deployment."
     attributes_metadata:
       generated:
         cobbler:
